@@ -53,4 +53,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.page {
+  min-height: var(--content-min-height);
+}
 </style>
