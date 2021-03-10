@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <AppNavBar />
     <router-view />
+    <AppFooter />
   </div>
 </template>
+
+<script>
+import AppNavBar from '@/components/App/AppNavBar/AppNavBar.vue';
+import AppFooter from '@/components/App/AppFooter/AppFooter.vue';
+export default {
+  components: {
+    AppNavBar,
+    AppFooter,
+  },
+};
+</script>
 
 <style>
 @import '~normalize.css';
