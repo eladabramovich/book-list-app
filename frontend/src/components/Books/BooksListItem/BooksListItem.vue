@@ -28,9 +28,6 @@
 <script>
 import moduleStyles from './BooksListItem.module.css';
 export default {
-  mounted() {
-    console.log(this.images);
-  },
   props: {
     id: {
       type: String,
