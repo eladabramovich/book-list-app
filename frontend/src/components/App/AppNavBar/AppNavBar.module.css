@@ -19,8 +19,12 @@
   list-style-type: none;
 }
 
-.fixRight {
+.alignRight {
   justify-self: end;
+}
+
+.alignCenter {
+  justify-self: center;
 }
 
 .navList .navItem {
