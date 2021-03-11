@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <AppNavBar />
+    <AppNavBar
+      :isDrawerOpen="isDrawerOpen"
+      @openDrawer="openAppDrawer"
+      @closeDrawer="closeAppDrawer"
+    />
+    <AppDrawer @close="closeAppDrawer" v-if="isDrawerOpen" />
     <router-view />
     <AppFooter />
   </div>
@@ -8,11 +13,28 @@
 
 <script>
 import AppNavBar from '@/components/App/AppNavBar/AppNavBar.vue';
+import AppDrawer from '@/components/App/AppDrawer/AppDrawer.vue';
 import AppFooter from '@/components/App/AppFooter/AppFooter.vue';
 export default {
   components: {
     AppNavBar,
     AppFooter,
+    AppDrawer,
+  },
+  computed: {
+    isDrawerOpen() {
+      return this.$store.getters.isAppDrawerOpen;
+    },
+  },
+  methods: {
+    closeAppDrawer() {
+      document.body.classList.remove('overflow-hidden');
+      this.$store.dispatch('toggleAppDrawer', false);
+    },
+    openAppDrawer() {
+      document.body.classList.add('overflow-hidden');
+      this.$store.dispatch('toggleAppDrawer', true);
+    },
   },
 };
 </script>
@@ -56,5 +78,9 @@ body {
 
 .page {
   min-height: var(--content-min-height);
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 </style>

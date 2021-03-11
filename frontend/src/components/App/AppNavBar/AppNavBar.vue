@@ -15,7 +15,10 @@
         </router-link>
       </li>
     </ul>
-    <div :class="`${styles.hamburgerIcon} ${styles.alignRight}`">
+    <div
+      :class="`${styles.hamburgerIcon} ${styles.alignRight}`"
+      @click="toggleAppDrawer"
+    >
       <span :class="styles.line1"></span>
       <span :class="styles.line2"></span>
       <span :class="styles.line3"></span>
@@ -26,9 +29,24 @@
 <script>
 import moduleStyles from './AppNavBar.module.css';
 export default {
+  props: {
+    isDrawerOpen: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     styles() {
       return moduleStyles;
+    },
+  },
+  methods: {
+    toggleAppDrawer() {
+      if (this.isDrawerOpen) {
+        this.$emit('closeDrawer');
+      } else {
+        this.$emit('openDrawer');
+      }
     },
   },
 };

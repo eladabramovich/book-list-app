@@ -1,0 +1,33 @@
+.drawer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin-top: var(--header-height);
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  overflow-y: scroll;
+  background-color: #ffffff;
+}
+
+.open {
+  opacity: 1;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.link {
+  margin-bottom: 16px;
+  color: var(--text-color-primary);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.link:last-of-type {
+  margin-bottom: 0;
+}
