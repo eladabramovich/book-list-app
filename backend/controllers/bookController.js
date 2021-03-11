@@ -5,8 +5,7 @@ const Book = require('../models/Book');
 // @route   GET /api/books
 // @access  Public
 const getAllBooks = asyncHandler(async (req, res) => {
-  const books = await Book.find({});
-  res.status(200).json(books);
+  return res.status(200).json(res.advancedResults);
 });
 
 // @desc    get single book's details
@@ -27,12 +26,18 @@ const getSingleBook = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 
 const addBook = asyncHandler(async (req, res) => {
-  const { title, imageUrlSmall, imageUrlLarge, description, generes } = req.body;
+  const {
+    title,
+    imageUrlSmall,
+    imageUrlLarge,
+    description,
+    generes,
+  } = req.body;
   const book = await Book.create({
     title,
     images: {
       small: imageUrlSmall,
-      large: imageUrlLarge
+      large: imageUrlLarge,
     },
     description,
     generes,
