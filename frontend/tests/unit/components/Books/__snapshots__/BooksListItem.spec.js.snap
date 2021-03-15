@@ -2,16 +2,16 @@
 
 exports[`BooksListItem.vue Should render 1`] = `
 <div>
-  <div><a>
+  <div class="bookItem"><a>
       <picture>
         <source media="(min-width: 769px)" srcset="http://localhost:5000/images/Moby_Dick_96x132.jpg" type="image/jpeg">
         <source media="(max-width: 768px)" srcset="http://localhost:5000/images/Moby_Dick_255x387.jpg" type="image/jpeg"> <img src="http://localhost:5000/images/Moby_Dick_96x132.jpg" alt="Moby Dick">
       </picture>
-      <div>
+      <div class="bookDetails">
         <h3>Moby Dick</h3>
         <p>Score: 0</p>
       </div>
     </a></div>
-  <hr>
+  <hr class="divider">
 </div>
 `;
