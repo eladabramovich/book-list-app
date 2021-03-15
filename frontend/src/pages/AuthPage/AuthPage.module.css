@@ -1,0 +1,103 @@
+.authPage {
+  margin-bottom: 104px;
+  padding-top: 120px;
+}
+
+.title {
+  margin: 0 0 32px 0;
+  color: var(--text-color-primary);
+  font-size: 40px;
+  line-height: 1.3;
+  text-align: center;
+  font-weight: 700;
+}
+
+.formGroup {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  align-items: center;
+}
+
+.formGroup:nth-last-of-type(2) {
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  display: none;
+}
+
+.formGroup input {
+  width: 540px;
+  height: 60px;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 1.3;
+  border: 1px solid var(--borders-color-primary);
+}
+
+.formGroup input.error {
+  border: 2px solid #bd6161;
+}
+
+.formGroup input::placeholder {
+  color: var(--text-color-primary);
+}
+
+.errorMessage {
+  width: 540px;
+  height: 16px;
+  margin-bottom: 16px;
+  color: #bd6161;
+  font-size: 14px;
+}
+
+.btnContainer {
+  width: 100%;
+}
+
+.switchModeBtn {
+  display: flex;
+  width: 540px;
+  height: 60px;
+  margin: 0 auto 32px auto;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #53BD8E;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-color-primary);
+}
+
+.submitBtn {
+  display: flex;
+  width: 270px;
+  height: 45px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f1cc03 11%, #53bd8e 100%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .authPage {
+    padding-top: 32px;
+  }
+
+  .formGroup input,
+  .errorMessage,
+  .switchModeBtn,
+  .submitBtn {
+    width: 100%;
+  }
+}
