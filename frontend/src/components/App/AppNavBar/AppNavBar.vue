@@ -9,9 +9,14 @@
       </li>
     </ul>
     <ul :class="`${styles.navList} ${styles.alignRight}`">
-      <li :class="styles.navItem">
+      <li :class="styles.navItem" v-if="!isUserLoggedin">
         <router-link to="/register">
           <strong>Login/Rgister</strong>
+        </router-link>
+      </li>
+      <li :class="styles.navItem" v-else>
+        <router-link to="/logout">
+          <strong>Logout</strong>
         </router-link>
       </li>
     </ul>
@@ -38,6 +43,9 @@ export default {
   computed: {
     styles() {
       return moduleStyles;
+    },
+    isUserLoggedin() {
+      return this.$store.getters.isUserLoggedin;
     },
   },
   methods: {

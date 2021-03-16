@@ -96,24 +96,39 @@ export default {
       },
     };
   },
-  validations: {
-    username: {
-      required,
-      minLength: minLength(2),
-      maxLength: maxLength(70),
-    },
-    email: {
-      required,
-      email,
-    },
-    password: {
-      required,
-      minLength: minLength(6),
-    },
-    confirm_password: {
-      required,
-      sameAs: sameAs('password'),
-    },
+  validations() {
+    if (this.isLogin) {
+      return {
+        email: {
+          required,
+          email,
+        },
+        password: {
+          required,
+          minLength: minLength(6),
+        },
+      };
+    } else {
+      return {
+        username: {
+          required,
+          minLength: minLength(2),
+          maxLength: maxLength(70),
+        },
+        email: {
+          required,
+          email,
+        },
+        password: {
+          required,
+          minLength: minLength(6),
+        },
+        confirm_password: {
+          required,
+          sameAs: sameAs('password'),
+        },
+      };
+    }
   },
   computed: {
     styles() {
@@ -127,13 +142,37 @@ export default {
     },
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.setErrorMessages();
       if (this.$v.$invalid) return;
-      console.log(this.$v);
+
+      let data;
+      if (this.isLogin) {
+        data = {
+          email: this.email,
+          password: this.password,
+        };
+      } else {
+        data = {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          confirm_password: this.confirm_password,
+        };
+      }
+
+      try {
+        await this.$store.dispatch('authUser', {
+          action: this.isLogin ? 'login' : 'register',
+          userData: data,
+        });
+        this.$router.replace('/');
+      } catch (err) {
+        console.error(err);
+      }
     },
     setErrorMessages() {
-      if (this.$v.username.$error) {
+      if (this.$v.username && this.$v.username.$error) {
         if (!this.$v.username.required) {
           this.errors.username = 'This field is required';
         } else if (!this.$v.username.minLength) {
@@ -141,7 +180,11 @@ export default {
         } else if (!this.$v.username.maxLength) {
           this.errors.username = 'Please enter no more than 70 characters';
         }
-      } else if (this.$v.username.$invalid && !this.$v.username.$dirty) {
+      } else if (
+        this.$v.username &&
+        this.$v.username.$invalid &&
+        !this.$v.username.$dirty
+      ) {
         this.errors.username = 'This field is required';
       } else {
         this.errors.username = '';
@@ -171,7 +214,7 @@ export default {
         this.errors.password = '';
       }
 
-      if (this.$v.confirm_password.$error) {
+      if (this.$v.confirm_password && this.$v.confirm_password.$error) {
         if (!this.$v.confirm_password.required) {
           this.errors.confirm_password = 'This field is required';
         } else if (!this.$v.confirm_password.$sameAs) {
@@ -179,6 +222,7 @@ export default {
             'Password and Confirm password fields do not match';
         }
       } else if (
+        this.$v.confirm_password &&
         this.$v.confirm_password.$invalid &&
         !this.$v.confirm_password.$dirty
       ) {

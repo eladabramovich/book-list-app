@@ -6,6 +6,9 @@ export default {
   state: () => {
     return {
       drawerOpen: false,
+      userId: null,
+      token: null,
+      username: null,
     };
   },
   actions,

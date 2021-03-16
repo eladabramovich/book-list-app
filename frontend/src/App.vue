@@ -26,6 +26,9 @@ export default {
       return this.$store.getters.isAppDrawerOpen;
     },
   },
+  created() {
+    this.$store.dispatch('shouldLogout');
+  },
   methods: {
     closeAppDrawer() {
       document.body.classList.remove('overflow-hidden');
