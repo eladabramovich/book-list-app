@@ -1,0 +1,21 @@
+.toggleBtn {
+  margin-bottom: 16px;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color-links);
+  text-decoration: underline;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.formCont {
+  display: none;
+}
+
+.formCont.show {
+  display: block;
+}
+
+.loginMessage p {
+  margin-bottom: 16px;
+}

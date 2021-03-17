@@ -1,0 +1,10 @@
+.reviews {
+  margin-top: 24px;
+}
+
+h3 {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color-primary);
+}

@@ -4,5 +4,8 @@ export default {
     await this.$store.dispatch('logout');
     this.$router.replace('/');
   },
+  render: function(createElement) {
+    return createElement();
+  },
 };
 </script>

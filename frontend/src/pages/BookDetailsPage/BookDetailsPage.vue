@@ -24,6 +24,7 @@
           <hr :class="styles.divider" />
           <p :class="styles.description" v-html="selectedBook.description"></p>
           <hr :class="styles.divider" />
+          <Reviews />
         </div>
       </div>
     </BaseContainer>
@@ -31,8 +32,12 @@
 </template>
 
 <script>
+import Reviews from '@/components/Reviews/Reviews/Reviews.vue';
 import moduleStyles from './BookDetailsPage.module.css';
 export default {
+  components: {
+    Reviews,
+  },
   computed: {
     styles() {
       return moduleStyles;
