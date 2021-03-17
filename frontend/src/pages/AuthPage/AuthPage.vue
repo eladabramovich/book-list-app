@@ -63,7 +63,11 @@
           >
             Switch To {{ isLogin ? 'Register' : 'Login' }}
           </button>
-          <button :class="styles.submitBtn">
+          <AppSpinner v-if="loading" />
+          <ServerErrorMessage v-else-if="serverError">
+            {{ serverError }}
+          </ServerErrorMessage>
+          <button :class="styles.submitBtn" v-else>
             <span>{{ authActionText }}</span>
           </button>
         </div>
@@ -84,6 +88,8 @@ import moduleStyles from './AuthPage.module.css';
 export default {
   data() {
     return {
+      loading: false,
+      serverError: null,
       username: '',
       email: '',
       password: '',
@@ -146,6 +152,8 @@ export default {
       this.setErrorMessages();
       if (this.$v.$invalid) return;
 
+      this.loading = true;
+      this.serverError = null;
       let data;
       if (this.isLogin) {
         data = {
@@ -168,8 +176,11 @@ export default {
         });
         this.$router.replace('/');
       } catch (err) {
+        this.serverError = err.message;
         console.error(err);
       }
+
+      this.loading = false;
     },
     setErrorMessages() {
       if (this.$v.username && this.$v.username.$error) {

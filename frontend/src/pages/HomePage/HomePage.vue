@@ -3,11 +3,19 @@
     <BaseContainer>
       <h2 :class="styles.categoryTitle">Newest 5 books on the website</h2>
       <hr :class="styles.divider" />
-      <BooksList :books="newestBooks" />
+      <AppSpinner v-if="loading" />
+      <ServerErrorMessage v-else-if="error">
+        {{ error }}
+      </ServerErrorMessage>
+      <BooksList :books="newestBooks" v-else />
 
       <h2 :class="styles.categoryTitle">Top 5 books on the website</h2>
       <hr :class="styles.divider" />
-      <BooksList :books="topBooks" />
+      <AppSpinner v-if="loading" />
+      <ServerErrorMessage v-else-if="error">
+        {{ error }}
+      </ServerErrorMessage>
+      <BooksList :books="topBooks" v-else />
     </BaseContainer>
   </main>
 </template>
@@ -28,11 +36,14 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      error: null,
       newestBooks: [],
       topBooks: [],
     };
   },
   async created() {
+    this.loading = true;
     try {
       const newestBooksReq = await axios.get('/api/books?limit=5');
       this.newestBooks = newestBooksReq.data.data;
@@ -42,8 +53,10 @@ export default {
       );
       this.topBooks = topBooksReq.data.data;
     } catch (err) {
+      this.error = err.message;
       console.error(err);
     }
+    this.loading = false;
   },
 };
 </script>
