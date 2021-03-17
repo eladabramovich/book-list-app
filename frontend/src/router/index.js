@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../pages/HomePage/HomePage.vue';
 import Auth from '../pages/AuthPage/AuthPage.vue';
 import Logout from '../pages/LogoutPage/LogoutPage.vue';
+import BookDetails from '../pages/BookDetailsPage/BookDetailsPage.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout,
+  },
+  {
+    path: '/book/:id',
+    name: 'bookDetails',
+    component: BookDetails,
   },
 ];
 

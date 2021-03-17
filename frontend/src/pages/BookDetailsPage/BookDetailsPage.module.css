@@ -1,0 +1,132 @@
+.divider {
+  border: 1px solid #4a626d;
+}
+
+.bookDeatilsPage {
+  min-height: var(--content-min-height);
+  margin-bottom: 104px;
+  padding-top: 88px;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 24px;
+}
+
+.imageCont {
+  grid-row: 1 / 3;
+}
+
+.titleCont h1 {
+  margin: 4px 0 16px 0;
+  font-size: 40px;
+  color: var(--text-color-primary);
+  line-height: 1.3;
+}
+
+.contentCont .metaDetails {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+  justify-content: space-between;
+}
+
+.contentCont .metaDetails .generes,
+.contentCont .metaDetails .score {
+  border: 1px solid var(--borders-color-primary);
+  color: var(--text-color-primary);
+}
+
+.contentCont .metaDetails .generes {
+  width: 532px;
+  padding: 24px 0 24px 16px;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.contentCont .metaDetails .score {
+  display: flex;
+  width: 190px;
+  padding-top: 16px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentCont .metaDetails .score p:first-of-type {
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.contentCont .metaDetails .score p:nth-of-type(2) {
+  font-size: 13px;
+}
+
+.contentCont .description {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  padding-left: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 1199px) {
+  .bookDeatilsPage {
+    padding-top: 64px;
+  }
+
+  .detailsGrid {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, auto) 1fr;
+  }
+
+  .titleCont {
+    justify-self: center;
+  }
+
+  .titleCont h1 {
+    margin: 0 0 16px 0;
+  }
+
+  .imageCont {
+    margin-bottom: 24px;
+    grid-row: 2 / 3;
+    justify-self: center;
+  }
+
+  .contentCont .metaDetails {
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+
+  .contentCont .metaDetails .generes,
+  .contentCont .metaDetails .score {
+    width: 100%;
+  }
+
+  .contentCont .metaDetails .generes {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: center;
+  }
+
+  .contentCont .metaDetails .score {
+    padding: 15px 0 15px 16px;
+  }
+
+  .contentCont .description {
+    margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .bookDeatilsPage {
+    padding-top: 32px;
+  }
+
+  .contentCont .description {
+    text-align: center;
+  }
+}
