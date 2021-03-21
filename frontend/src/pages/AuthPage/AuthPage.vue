@@ -174,7 +174,10 @@ export default {
           action: this.isLogin ? 'login' : 'register',
           userData: data,
         });
-        this.$router.replace('/');
+        const redirectUrl = this.$route.query.redirect
+          ? '/' + this.$route.query.redirect
+          : '/';
+        this.$router.replace(redirectUrl);
       } catch (err) {
         this.serverError = err.message;
         console.error(err);
@@ -249,9 +252,24 @@ export default {
       this.confirm_password = '';
 
       if (!this.$route.query.login) {
-        this.$router.push('/register?login=1');
+        this.$router.push({
+          path: '/register',
+          query: {
+            ...this.$route.query,
+            login: '1',
+          },
+        });
       } else {
-        this.$router.push('/register');
+        const qsObj = {};
+        for (let qsItem in this.$route.query) {
+          if (qsItem !== 'login') {
+            qsObj[qsItem] = this.$route.query[qsItem];
+          }
+        }
+        this.$router.push({
+          path: '/register',
+          query: qsObj,
+        });
       }
     },
   },

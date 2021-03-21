@@ -36,7 +36,10 @@ export default {
       }
     },
     goToLogin() {
-      this.$router.push('/register?login=1');
+      this.$router.push(
+        '/register?login=1&redirect=' +
+          encodeURIComponent(this.$route.path.substr(1))
+      );
     },
   },
 };
