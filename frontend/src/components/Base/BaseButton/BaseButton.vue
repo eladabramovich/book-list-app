@@ -1,5 +1,5 @@
 <template>
-  <button :class="styles.baseButton" :style="inlineStyle" @click="onClicked">
+  <button :class="styles.baseButton" :style="inlineStyle" v-on="$listeners">
     <slot></slot>
   </button>
 </template>
@@ -10,10 +10,6 @@ export default {
   props: {
     inlineStyle: {
       type: Object,
-    },
-    onClicked: {
-      type: Function,
-      required: true,
     },
   },
   computed: {

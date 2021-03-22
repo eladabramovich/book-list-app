@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.btnCont {
+  display: flex;
+}
+
 .formCont {
   display: none;
 }
@@ -18,4 +22,73 @@
 
 .loginMessage p {
   margin-bottom: 16px;
+}
+
+.required:after {
+  content: '*';
+  color: #ff0000;
+}
+.formGroup {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  color: #40535B;
+  font-size: 16px;
+}
+
+.formGroup select.error,
+.formGroup textarea.error {
+  border: 2px solid #bd6161;
+}
+
+.formGroup select {
+  width: 180px;
+  height: 34px;
+  margin-bottom: 12px;
+  padding-left: 4px;
+  color: #40535B;
+  border: 1px solid var(--borders-color-primary);
+}
+
+.formGroup textarea {
+  max-width: 600px;
+}
+
+.errorMessage {
+  width: 100%;
+  height: 16px;
+  margin-bottom: 16px;
+  color: #bd6161;
+  font-size: 14px;
+}
+
+.errorMessage.last {
+  margin-top: 12px;
+}
+
+@media screen and (max-width: 767px) {
+  .btnCont {
+    justify-content: center;
+  }
+
+  .formGroup select,
+  .formGroup textarea {
+    width: 100%;
+    align-self: center;
+  }
+  .submitBtn {
+    width: 100%!important;
+  }
+
+  .loginMessage p {
+    margin-top: 12px;
+    text-align: center;
+  }
+  .loginMessage button {
+    width: 100%!important;
+  }
 }
