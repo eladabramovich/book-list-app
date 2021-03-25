@@ -44,7 +44,7 @@ const addBook = asyncHandler(async (req, res) => {
   });
   res.status(201).json({
     success: true,
-    book: book,
+    data: book,
   });
 });
 
