@@ -24,7 +24,7 @@
           <hr :class="styles.divider" />
           <p :class="styles.description" v-html="selectedBook.description"></p>
           <hr :class="styles.divider" />
-          <Reviews />
+          <Reviews :reviews="reviews" />
         </div>
       </div>
     </BaseContainer>

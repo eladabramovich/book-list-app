@@ -1,0 +1,41 @@
+.reviewItem {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+header {
+  display: flex;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, auto);
+  border-bottom: 1px solid #e7edf3;
+}
+
+.name,
+.score,
+.date {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-color-primary);
+}
+
+.info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score {
+  margin-right: 48px;
+}
+
+.body {
+  margin-bottom: 12px;
+  color: var(--text-primary-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.divider {
+  border: 1px solid #4a626d;
+}
