@@ -45,6 +45,9 @@ export default {
     selectedBook() {
       return this.$store.getters['books/selectedBook'];
     },
+    reviews() {
+      return this.$store.getters['books/bookReviews'];
+    },
     bookGeners() {
       return this.selectedBook.generes.join(', ');
     },
@@ -60,6 +63,7 @@ export default {
     const bookId = this.$route.params.id;
     try {
       await this.$store.dispatch('books/fetchBookDetails', bookId);
+      await this.$store.dispatch('books/fetchBookReviews', bookId);
     } catch (err) {
       this.error = err.message;
       console.error(err);

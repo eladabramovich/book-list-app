@@ -8,6 +8,7 @@ export default {
     return {
       books: [],
       selectedBook: null,
+      bookReviews: null,
     };
   },
   actions,
