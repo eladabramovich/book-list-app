@@ -1,17 +1,26 @@
 const { json } = require('express');
 const asyncHandler = require('express-async-handler');
 const Review = require('../models/Review');
+const Book = require('../models/Book');
 
 // @desc    Add new review
 // @route   POST /api/reviews/:bookId
 // @access  Public
 const addReview = asyncHandler(async (req, res) => {
   const bookId = req.params.bookId;
-  const { userId, reviewText, score } = req.body;
+  const { userId, username, reviewText, score } = req.body;
+
+  const book = await Book.findById(bookId);
+
+  if (!book) {
+    res.status(404);
+    throw new Error('No book with this ID found');
+  }
 
   const review = await Review.create({
     book: bookId,
     author: userId,
+    username,
     reviewText,
     score,
   });
