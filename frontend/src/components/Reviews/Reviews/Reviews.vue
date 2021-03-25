@@ -9,9 +9,8 @@
         :username="review.username"
         :score="review.score"
         :date="review.createdAt"
-      >
-        {{ review.reviewText }}
-      </ReviewsItem>
+        :reviewText="review.reviewText"
+      />
     </div>
   </div>
 </template>

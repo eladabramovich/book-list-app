@@ -8,7 +8,20 @@
       </div>
     </header>
     <div :class="styles.body">
-      <slot></slot>
+      <p v-if="reviewText.length <= 150">
+        {{ reviewText }}
+      </p>
+      <p v-else>
+        {{ longText }}
+        &nbsp;
+        <a
+          href="#"
+          :class="styles.toggleText"
+          @click.prevent="fullyOpen = !fullyOpen"
+        >
+          {{ !fullyOpen ? 'Read More' : 'Read Less' }}
+        </a>
+      </p>
     </div>
     <hr :class="styles.divider" />
   </div>
@@ -26,10 +39,19 @@ export default {
       type: Number,
       required: true,
     },
+    reviewText: {
+      type: String,
+      required: true,
+    },
     date: {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      fullyOpen: false,
+    };
   },
   computed: {
     styles() {
@@ -43,6 +65,11 @@ export default {
       }
       formattedDate = formattedDate.join('/');
       return formattedDate;
+    },
+    longText() {
+      return !this.fullyOpen
+        ? this.reviewText.split(' ', 99).join(' ')
+        : this.reviewText;
     },
   },
 };
