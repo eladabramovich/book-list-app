@@ -17,7 +17,7 @@
               {{ bookGeners }}
             </div>
             <div :class="styles.score">
-              <p>{{ selectedBook.averageScore }}</p>
+              <p>{{ averageScore }}</p>
               <p>Score</p>
             </div>
           </div>
@@ -50,6 +50,11 @@ export default {
     },
     bookGeners() {
       return this.selectedBook.generes.join(', ');
+    },
+    averageScore() {
+      return this.selectedBook.averageScore > 0
+        ? this.selectedBook.averageScore.toFixed(2)
+        : 0;
     },
   },
   data() {

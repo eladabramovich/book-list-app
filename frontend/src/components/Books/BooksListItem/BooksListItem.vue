@@ -17,7 +17,7 @@
         </picture>
         <div :class="styles.bookDetails">
           <h3>{{ title }}</h3>
-          <p>Score: {{ score }}</p>
+          <p>Score: {{ formattedScore }}</p>
         </div>
       </router-link>
     </div>
@@ -49,6 +49,9 @@ export default {
   computed: {
     styles() {
       return moduleStyles;
+    },
+    formattedScore() {
+      return this.score > 0 ? this.score.toFixed(2) : 0;
     },
   },
 };
