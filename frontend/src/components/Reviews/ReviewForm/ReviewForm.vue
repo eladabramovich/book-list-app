@@ -45,12 +45,17 @@
             {{ errors.review }}
           </p>
         </div>
+        <AppSpinner v-if="loading" />
         <BaseButton
           type="submit"
           :class="styles.submitBtn"
           :inlineStyle="{ marginTop: '32px' }"
+          v-else
           >Submit</BaseButton
         >
+        <p :class="styles.formError" v-if="!loading && serverError">
+          {{ serverError }}
+        </p>
       </form>
       <div :class="styles.loginMessage" v-else>
         <p>Please log in to add/edit your review</p>
@@ -76,6 +81,8 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      serverError: null,
       score: 'Choose score...',
       review: '',
       errors: {
@@ -101,9 +108,30 @@ export default {
         el.classList.add(this.styles.show);
       }
     },
-    submitForm() {
+    async submitForm() {
       this.setErrorMessages();
       if (this.$v.$invalid) return;
+      const reviewData = {
+        score: this.score,
+        reviewText: this.review,
+        bookId: this.$route.params.id,
+      };
+
+      this.loading = true;
+      this.serverError = null;
+      try {
+        await this.$store.dispatch('books/saveBookReview', reviewData);
+      } catch (err) {
+        console.log(err);
+        if (err.response.data.message === 'Unique Field') {
+          this.serverError = 'You can only post one review';
+        } else {
+          this.serverError = err.message;
+        }
+      }
+      this.loading = false;
+      this.score = 'Choose score...';
+      this.review = '';
     },
     setErrorMessages() {
       if (this.$v.score.$error) {

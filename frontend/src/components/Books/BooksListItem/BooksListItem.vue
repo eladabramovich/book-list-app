@@ -51,7 +51,7 @@ export default {
       return moduleStyles;
     },
     formattedScore() {
-      return this.score > 0 ? this.score.toFixed(2) : 0;
+      return Number.isInteger(this.score) ? this.score : this.score.toFixed(2);
     },
   },
 };

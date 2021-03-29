@@ -58,7 +58,8 @@
   max-width: 600px;
 }
 
-.errorMessage {
+.errorMessage,
+.formError {
   width: 100%;
   height: 16px;
   margin-bottom: 16px;
@@ -68,6 +69,11 @@
 
 .errorMessage.last {
   margin-top: 12px;
+}
+
+.formError {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 767px) {

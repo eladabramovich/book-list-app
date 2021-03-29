@@ -52,9 +52,9 @@ export default {
       return this.selectedBook.generes.join(', ');
     },
     averageScore() {
-      return this.selectedBook.averageScore > 0
-        ? this.selectedBook.averageScore.toFixed(2)
-        : 0;
+      return Number.isInteger(this.selectedBook.averageScore)
+        ? this.selectedBook.averageScore
+        : this.selectedBook.averageScore.toFixed(2);
     },
   },
   data() {
