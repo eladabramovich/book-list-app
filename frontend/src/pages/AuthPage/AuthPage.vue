@@ -67,7 +67,7 @@
           <ServerErrorMessage v-else-if="serverError">
             {{ serverError }}
           </ServerErrorMessage>
-          <button :class="styles.submitBtn" v-else>
+          <button :class="styles.submitBtn" v-if="!loading">
             <span>{{ authActionText }}</span>
           </button>
         </div>
@@ -179,7 +179,7 @@ export default {
           : '/';
         this.$router.replace(redirectUrl);
       } catch (err) {
-        this.serverError = err.message;
+        this.serverError = err.response.data.message;
         console.error(err);
       }
 

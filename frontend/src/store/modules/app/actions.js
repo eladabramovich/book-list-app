@@ -29,6 +29,7 @@ export default {
       localStorage.setItem('user', JSON.stringify(data));
     } catch (err) {
       console.error(err);
+      throw err;
     }
   },
   async logout({ commit }) {
