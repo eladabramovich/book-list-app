@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import moduleStyles from './ReviewsItem.module.css';
 export default {
   props: {
@@ -58,13 +59,7 @@ export default {
       return moduleStyles;
     },
     formattedDate() {
-      const dateArr = this.date.substr(0, 10).split('-');
-      let formattedDate = [];
-      for (let i = dateArr.length - 1; i >= 0; i--) {
-        formattedDate.push(dateArr[i]);
-      }
-      formattedDate = formattedDate.join('/');
-      return formattedDate;
+      return dayjs(this.date).format('DD/MM/YYYY');
     },
     longText() {
       return !this.fullyOpen
