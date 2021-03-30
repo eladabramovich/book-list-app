@@ -67,7 +67,7 @@ const registerUser = asyncHandler(async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: token,
-        tokenExpiry: getTokenExpiryDate(token)
+        tokenExpiry: getTokenExpiryDate(token),
       });
     } else {
       res.status(400);
@@ -109,11 +109,60 @@ const login = asyncHandler(async (req, res) => {
     email: user.email,
     isAdmin: user.isAdmin,
     token: token,
-    tokenExpiry: getTokenExpiryDate(token)
+    tokenExpiry: getTokenExpiryDate(token),
+  });
+});
+
+// @desc    Update user info
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+
+const updateUser = asyncHandler(async (req, res) => {
+  const { username, email, isAdmin } = req.body;
+  const user = await User.findById(req.params.id);
+  if (user) {
+    user.username = username || user.username;
+    user.email = email || user.email;
+    user.isAdmin = isAdmin ?? user.isAdmin;
+
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        _id: updatedUser._id,
+        username: updatedUser.username,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+      },
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  await user.remove();
+  return res.status(200).json({
+    success: true,
+    data: {},
   });
 });
 
 module.exports = {
   registerUser,
   login,
+  updateUser,
+  deleteUser,
 };
