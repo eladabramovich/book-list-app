@@ -67,8 +67,8 @@ const updateBook = asyncHandler(async (req, res) => {
   if (book) {
     book.title = title;
     book.images = {
-      imageUrlSmall,
-      imageUrlLarge,
+      small: imageUrlSmall,
+      large: imageUrlLarge,
     };
     book.generes = generes;
     book.description = description;
