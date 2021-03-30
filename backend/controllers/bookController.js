@@ -48,8 +48,62 @@ const addBook = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    Update book info
+// @route   PUT /api/books/:id
+// @access  Private/Admin
+
+const updateBook = asyncHandler(async (req, res) => {
+  const bookId = req.params.id;
+  const {
+    title,
+    imageUrlSmall,
+    imageUrlLarge,
+    generes,
+    description,
+  } = req.body;
+
+  const book = await Book.findById(bookId);
+
+  if (book) {
+    book.title = title;
+    book.images = {
+      imageUrlSmall,
+      imageUrlLarge,
+    };
+    book.generes = generes;
+    book.description = description;
+    const updatedBook = await book.save();
+    return res.status(200).json({
+      success: true,
+      data: updatedBook,
+    });
+  } else {
+    res.status(404);
+    throw new Error('Book not found');
+  }
+});
+
+// @desc    Delete book
+// @route   DELETE /api/books/:id
+// @access  Private/Admin
+
+const deleteBook = asyncHandler(async (req, res) => {
+  const book = await Book.findById(req.params.id);
+  if (!book) {
+    res.status(404);
+    throw new Error('Book not found');
+  }
+  await book.remove();
+  return res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
+
 module.exports = {
   getAllBooks,
   getSingleBook,
   addBook,
+  updateBook,
+  deleteBook,
 };

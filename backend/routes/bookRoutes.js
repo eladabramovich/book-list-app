@@ -7,12 +7,18 @@ const {
   getAllBooks,
   getSingleBook,
   addBook,
+  updateBook,
+  deleteBook,
 } = require('../controllers/bookController');
 
 router
   .route('/')
   .get(advancedResults(Book), getAllBooks)
   .post(protect, isAdmin, addBook);
-router.route('/:id').get(getSingleBook);
+router
+  .route('/:id')
+  .get(getSingleBook)
+  .put(protect, isAdmin, updateBook)
+  .delete(protect, isAdmin, deleteBook);
 
 module.exports = router;
