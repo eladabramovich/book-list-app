@@ -43,7 +43,7 @@ export default {
   shouldLogout({ commit, dispatch }) {
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
-      if (checkTokenExpiry(userData.tokenExpiry)) {
+      if (checkTokenExpiry(userData.tokenExpiry * 1000)) {
         dispatch('logout');
       } else {
         commit('setUser', {
