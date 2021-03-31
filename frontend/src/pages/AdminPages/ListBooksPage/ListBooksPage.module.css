@@ -1,0 +1,53 @@
+.listBooksPage {
+  min-height: var(--content-min-height);
+  margin-bottom: 104px;
+  padding-top: 88px;
+}
+
+.title {
+  text-align: center;
+}
+
+.booksTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booksTable th,
+.booksTable td {
+  padding: 12px 0 12px 20px;
+  color: #111111;
+  text-align: left;
+}
+
+.booksTable th {
+  background-color: var(--primary-color);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.booksTable td {
+  padding-left: 8px;
+  font-size: 16px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.ctaBtnCont {
+  margin-top: 64px;
+  text-align: center;
+}
+
+.addBookBtn {
+  width: 500px !important;
+  height: 54px !important;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .booksTable .bookId,
+  .booksTable .createdAt,
+  .booksTable .updatedAt {
+    display: none;
+  }
+}

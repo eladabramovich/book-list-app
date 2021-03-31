@@ -1,0 +1,17 @@
+.baseLinkButton {
+  display: flex;
+  width: 233px;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--primary-text-color);
+}
+
+.baseLinkButton:visited {
+  color: var(--primary-text-color);
+}
