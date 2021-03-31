@@ -1,0 +1,89 @@
+.addBookPage {
+  min-height: var(--content-min-height);
+  margin-bottom: 104px;
+  padding-top: 48px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  width: 540px;
+  margin: 0 auto;
+}
+
+.formGroup {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+}
+
+.formGroup.checkboxGroup {
+  margin-bottom: 4px;
+  flex-flow: row;
+  align-items: flex-start;
+}
+
+.formGroup.checkboxGroup div:not(:last-of-type) {
+  margin-right: 24px;
+}
+
+.formGroup label,
+.generesTitle {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-text-color);
+}
+
+.formGroup.checkboxGroup label {
+  font-weight: 400;
+}
+
+.formGroup input[type='text'],
+.formGroup textarea {
+  width: 100%;
+  height: 38px;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 1.3;
+  border: 1px solid var(--borders-color-primary);
+}
+
+.formGroup textarea {
+  height: 150px;
+}
+
+.formGroup input[type='checkbox'] {
+  margin-right: 4px;
+}
+
+.formGroup input.error,
+.formGroup textarea.error {
+  border: 2px solid #bd6161;
+}
+
+.formGroup input::placeholder {
+  color: var(--text-color-primary);
+}
+
+.errorMessage {
+  width: 100%;
+  height: 16px;
+  margin-bottom: 16px;
+  color: #bd6161;
+  font-size: 14px;
+}
+
+.buttonsCont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancelBtn,
+.submitBtn {
+  width: 200px !important;
+  height: 48px !important;
+}

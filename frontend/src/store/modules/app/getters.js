@@ -5,4 +5,7 @@ export default {
   isUserLoggedin(state) {
     return state.token !== null;
   },
+  token(state) {
+    return state.token;
+  },
 };

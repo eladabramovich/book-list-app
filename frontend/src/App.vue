@@ -54,7 +54,7 @@ a {
   text-decoration: none;
 }
 
-input {
+input:not(type='checkbox') {
   /* Remove Safari styling */
   border-radius: 0;
   -webkit-appearance: none;
