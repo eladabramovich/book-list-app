@@ -127,6 +127,9 @@
             {{ errors.description }}
           </p>
         </div>
+        <ServerErrorMessage v-if="!loading && serverError">
+          {{ serverError }}
+        </ServerErrorMessage>
         <div :class="styles.buttonsCont">
           <OutlineLinkButton :class="styles.cancelBtn" to="/manage/books">
             Cancel
@@ -200,6 +203,7 @@ export default {
         await axios.post('/api/books', formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        this.$router.push('/manage/books');
       } catch (err) {
         this.serverError = err.response.data.message;
         console.error(err);

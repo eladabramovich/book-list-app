@@ -87,3 +87,36 @@ form {
   width: 200px !important;
   height: 48px !important;
 }
+
+@media screen and (max-width: 767px) {
+  .addBookPage {
+    padding-top: 32px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .formGroup.checkboxGroup {
+    justify-content: space-between;
+  }
+
+  .formGroup.checkboxGroup div:not(:last-of-type) {
+    margin-right: 0;
+  }
+
+  .buttonsCont {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: initial;
+  }
+
+  .cancelBtn,
+  .submitBtn {
+    width: 100% !important;
+  }
+
+  .submitBtn {
+    margin-bottom: 16px;
+  }
+}
