@@ -2,6 +2,7 @@
   <main :class="`${styles.listBooksPage} page`">
     <BaseContainer>
       <h1 :class="styles.title">List All Books</h1>
+      <SearchBar @search="searchBook" />
       <table :class="styles.booksTable">
         <thead>
           <tr>
@@ -36,8 +37,12 @@
 <script>
 import axios from 'axios';
 import dayjs from 'dayjs';
+import SearchBar from '@/components/UI/SearchBar/SearchBar.vue';
 import moduleStyles from './ListBooksPage.module.css';
 export default {
+  components: {
+    SearchBar,
+  },
   computed: {
     styles() {
       return moduleStyles;
@@ -52,15 +57,40 @@ export default {
     formateDate(dateStr) {
       return dayjs(dateStr).format('HH:mm DD/MM/YYYY');
     },
+    async fetchData() {
+      let qsStr = '';
+      const qsKeys = Object.keys(this.$route.query);
+      for (let i = 0; i <= qsKeys.length - 1; i++) {
+        if (i === 0) {
+          qsStr += '?';
+        } else {
+          qsStr += '&';
+        }
+        qsStr += `${qsKeys[i]}=${this.$route.query[qsKeys[i]]}`;
+      }
+      const page = this.$route.query.page || '1';
+      const url =
+        qsKeys.length > 0
+          ? '/api/books' + qsStr
+          : `/api/books?limit=5&page=${page}`;
+      try {
+        const { data } = await axios.get(url);
+        this.books = data.data;
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    searchBook(searchTerm) {
+      let url = `${this.$route.path}?limit=5&page=1`;
+      if (searchTerm !== '') {
+        url += `&title[regex]=${searchTerm}&title[options]=i`;
+      }
+      this.$router.push(url);
+      this.fetchData();
+    },
   },
-  async created() {
-    const page = this.$route.query.page || '1';
-    try {
-      const { data } = await axios.get(`/api/books?limit=5&page=${page}`);
-      this.books = data.data;
-    } catch (err) {
-      console.error(err);
-    }
+  created() {
+    this.fetchData();
   },
 };
 </script>
