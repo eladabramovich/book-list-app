@@ -8,7 +8,7 @@ h1 {
   text-align: center;
 }
 
-form {
+.form {
   width: 540px;
   margin: 0 auto;
 }
@@ -101,7 +101,7 @@ form {
     padding-top: 32px;
   }
 
-  form {
+  .form {
     width: 100%;
   }
 

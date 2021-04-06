@@ -2,7 +2,11 @@
   <main :class="`${styles.addBookPage} page`">
     <BaseContainer>
       <h1>Edit Book</h1>
-      <form @submit.prevent="submitForm" novalidate="novalidate">
+      <form
+        :class="styles.form"
+        @submit.prevent="submitForm"
+        novalidate="novalidate"
+      >
         <div :class="styles.formGroup">
           <label for="title">Title</label>
           <input
