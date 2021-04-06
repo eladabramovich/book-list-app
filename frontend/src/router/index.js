@@ -6,6 +6,7 @@ import Logout from '../pages/LogoutPage/LogoutPage.vue';
 import BookDetails from '../pages/BookDetailsPage/BookDetailsPage.vue';
 import ListBooksPage from '../pages/AdminPages/ListBooksPage/ListBooksPage.vue';
 import AddBookPage from '../pages/AdminPages/AddBookPage/AddBookPage.vue';
+import EditBookPage from '../pages/AdminPages/EditBookPage/EditBookPage.vue';
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/manage/books/add',
     name: 'addBook',
     component: AddBookPage,
+  },
+  {
+    path: '/manage/books/:id',
+    name: 'editBook',
+    component: EditBookPage,
   },
 ];
 

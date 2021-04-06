@@ -1,7 +1,7 @@
 <template>
   <main :class="`${styles.addBookPage} page`">
     <BaseContainer>
-      <h1>Add New Book</h1>
+      <h1>Edit Book</h1>
       <form @submit.prevent="submitForm" novalidate="novalidate">
         <div :class="styles.formGroup">
           <label for="title">Title</label>
@@ -127,6 +127,12 @@
             {{ errors.description }}
           </p>
         </div>
+        <div :class="styles.dangerZone">
+          <h2>Danger Zone</h2>
+          <DangerButton type="button" @click="deleteBook">
+            Delete Book
+          </DangerButton>
+        </div>
         <ServerErrorMessage v-if="!loading && serverError">
           {{ serverError }}
         </ServerErrorMessage>
@@ -147,10 +153,12 @@
 import { required } from 'vuelidate/lib/validators';
 import axios from 'axios';
 import OutlineLinkButton from '@/components/UI/OutlineLinkButton/OutlineLinkButton.vue';
-import moduleStyles from './AddBookPage.module.css';
+import DangerButton from '@/components/UI/DangerButton/DangerButton.vue';
+import moduleStyles from './EditBookPage.module.css';
 export default {
   components: {
     OutlineLinkButton,
+    DangerButton,
   },
   data() {
     return {
@@ -174,6 +182,12 @@ export default {
     styles() {
       return moduleStyles;
     },
+    bookId() {
+      return this.$route.params.id;
+    },
+    selectedBook() {
+      return this.$store.getters['books/selectedBook'];
+    },
   },
   validations: {
     title: { required },
@@ -181,6 +195,27 @@ export default {
     largeImage: { required },
     generes: { required },
     description: { required },
+  },
+  async created() {
+    this.serverError = null;
+    this.loading = true;
+    try {
+      await this.$store.dispatch('books/fetchBookDetails', this.bookId);
+    } catch (err) {
+      this.serverError = err.response.data.message;
+      console.error(err);
+    }
+    this.loading = false;
+  },
+  mounted() {
+    const _vm = this;
+    setTimeout(function() {
+      _vm.title = _vm.selectedBook.title;
+      _vm.smallImage = _vm.selectedBook.images.small;
+      _vm.largeImage = _vm.selectedBook.images.large;
+      _vm.generes = _vm.selectedBook.generes;
+      _vm.description = _vm.selectedBook.description;
+    }, 300);
   },
   methods: {
     async submitForm() {
@@ -199,7 +234,7 @@ export default {
           generes: this.generes,
           description: this.description,
         };
-        await axios.post('/api/books', formData, {
+        await axios.put(`/api/books/${this.bookId}`, formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.$router.push('/manage/books');
@@ -280,6 +315,18 @@ export default {
         this.errors.description = requiredMessage;
       } else {
         this.errors.description = '';
+      }
+    },
+    async deleteBook() {
+      const token = this.$store.getters.token;
+      try {
+        await axios.delete(`/api/books/${this.bookId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        this.$router.push('/manage/books');
+      } catch (err) {
+        this.serverError = err.response.data.message;
+        console.error(err);
       }
     },
   },

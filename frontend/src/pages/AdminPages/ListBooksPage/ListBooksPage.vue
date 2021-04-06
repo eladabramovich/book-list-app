@@ -19,13 +19,13 @@
             <td :class="styles.createdAt">{{ formateDate(book.createdAt) }}</td>
             <td :class="styles.updatedAt">{{ formateDate(book.updatedAt) }}</td>
             <td :class="styles.editLinkCell">
-              <router-link to="/">Edit</router-link>
+              <router-link :to="`/manage/books/${book._id}`">Edit</router-link>
             </td>
           </tr>
         </tbody>
       </table>
       <div :class="styles.ctaBtnCont">
-        <BaseLinkButton to="/" :class="styles.addBookBtn"
+        <BaseLinkButton to="/manage/books/add" :class="styles.addBookBtn"
           >Add New Book</BaseLinkButton
         >
       </div>
