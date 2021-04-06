@@ -106,6 +106,15 @@
             <input
               type="checkbox"
               name="generes"
+              id="non-fiction"
+              value="non Fiction"
+              v-model.lazy="generes"
+            />
+            <label for="non-fiction">Non Fiction</label>
+            <br />
+            <input
+              type="checkbox"
+              name="generes"
               id="science-fiction"
               value="Science Fiction"
               v-model.lazy="generes"
