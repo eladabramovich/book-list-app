@@ -47,6 +47,39 @@
   text-decoration: underline;
 }
 
+.navList .dropdownItem {
+  position: relative;
+}
+
+.navList .dropdownItem span {
+  text-decoration: underline;
+}
+
+.navList .dropdown {
+  position: absolute;
+  display: none;
+  min-width: 150px;
+  padding: 8px 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 10;
+  background-color: #ffffff;
+  border: 1px solid rgba(200, 200, 200, 0.6);
+  box-shadow: 0 2px 4px rgba(200, 200, 200, 0.85);
+}
+
+.navList .dropdown a {
+  display: block;
+  margin-bottom: 6px;
+  text-align: center;
+  color: var(--text-color-links);
+  text-decoration: underline;
+}
+
+.navList .dropdownItem:hover .dropdown {
+  display: block;
+}
+
 .hamburgerIcon {
   display: none;
 }

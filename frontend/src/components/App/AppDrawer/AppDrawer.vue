@@ -7,6 +7,12 @@
       <router-link :class="styles.link" to="/browse">
         <span @click="closeDrawer">Browse Books</span>
       </router-link>
+      <router-link :class="styles.link" to="/manage/books" v-if="isUserAdmin">
+        <span @click="closeDrawer">Manage Books</span>
+      </router-link>
+      <router-link :class="styles.link" to="/manage/users" v-if="isUserAdmin">
+        <span @click="closeDrawer">Manage users</span>
+      </router-link>
       <router-link v-if="!isUserLoggedin" :class="styles.link" to="/register">
         <span @click="closeDrawer">Login/Register</span>
       </router-link>
@@ -26,6 +32,14 @@ export default {
     },
     isUserLoggedin() {
       return this.$store.getters.isUserLoggedin;
+    },
+    isUserAdmin() {
+      if (this.isUserLoggedin) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.isAdmin;
+      } else {
+        return false;
+      }
     },
   },
   methods: {

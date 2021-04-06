@@ -9,6 +9,16 @@
       </li>
     </ul>
     <ul :class="`${styles.navList} ${styles.alignRight}`">
+      <li
+        :class="`${styles.navItem} ${styles.dropdownItem}`"
+        v-if="isUserAdmin"
+      >
+        <span>manage</span>
+        <div :class="styles.dropdown">
+          <router-link to="/manage/books">Manage Books</router-link>
+          <router-link to="/manage/users">Manage Users</router-link>
+        </div>
+      </li>
       <li :class="styles.navItem" v-if="!isUserLoggedin">
         <router-link to="/register">
           <strong>Login/Rgister</strong>
@@ -46,6 +56,14 @@ export default {
     },
     isUserLoggedin() {
       return this.$store.getters.isUserLoggedin;
+    },
+    isUserAdmin() {
+      if (this.isUserLoggedin) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.isAdmin;
+      } else {
+        return false;
+      }
     },
   },
   methods: {
