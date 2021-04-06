@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cleanXss = require('xss-clean');
 const colors = require('colors');
 
 const connectDB = require('./config/db');
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use(cleanXss());
 
 app.get('/', (req, res) => {
   res.send('Hello World');
