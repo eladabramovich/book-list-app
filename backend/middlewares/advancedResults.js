@@ -12,7 +12,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
   let queryStr = JSON.stringify(reqQuery);
 
   queryStr = queryStr.replace(
-    /\b(gt|gte|lt|lte|in)\b/g,
+    /\b(gt|gte|lt|lte|in|regex|options)\b/g,
     (match) => `$${match}`
   );
 
