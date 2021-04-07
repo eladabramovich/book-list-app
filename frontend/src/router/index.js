@@ -35,23 +35,81 @@ const routes = [
     path: '/manage/books',
     name: 'listBooks',
     component: ListBooksPage,
+    meta: {
+      requiresAuth: true,
+      requiresAdminRole: true,
+    },
   },
   {
     path: '/manage/books/add',
     name: 'addBook',
     component: AddBookPage,
+    meta: {
+      requiresAuth: true,
+      requiresAdminRole: true,
+    },
   },
   {
     path: '/manage/books/:id',
     name: 'editBook',
     component: EditBookPage,
+    meta: {
+      requiresAuth: true,
+      requiresAdminRole: true,
+    },
+  },
+  {
+    path: '**',
+    name: '404',
+    redirect: '/',
   },
 ];
+
+function isUserLoggedIn() {
+  return localStorage.getItem('user') !== null;
+}
+
+function isAdminUser() {
+  let flag = false;
+  let user = localStorage.getItem('user');
+  if (user) {
+    user = JSON.parse(user);
+    if (user.isAdmin) {
+      flag = true;
+    }
+  }
+  return flag;
+}
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isUserLoggedIn()) {
+      next({
+        path: '/login',
+        query: { redirect: to.path },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+
+  if (to.matched.some((record) => record.meta.requiresAdminRole)) {
+    if (!isAdminUser()) {
+      next('/');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
