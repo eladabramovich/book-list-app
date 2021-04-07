@@ -2,7 +2,47 @@
   <main :class="`${styles.listBooksPage} page`">
     <BaseContainer>
       <h1 :class="styles.title">List All Books</h1>
-      <SearchBar @search="searchBook" />
+      <div :class="styles.filterActions">
+        <SearchBar @search="searchBook" />
+        <ul :class="styles.sortActions">
+          <li>
+            <router-link
+              :to="{
+                path: $route.path,
+                query: { limit: 5, page: 1, sort: 'title' },
+              }"
+              >A-Z</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              :to="{
+                path: $route.path,
+                query: { limit: 5, page: 1, sort: '-title' },
+              }"
+              >Z-A</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              :to="{
+                path: $route.path,
+                query: { limit: 5, page: 1, sort: 'createdAt' },
+              }"
+              >Create Date DESC</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              :to="{
+                path: $route.path,
+                query: { limit: 5, page: 1, sort: '-createdAt' },
+              }"
+              >Create Date ASC</router-link
+            >
+          </li>
+        </ul>
+      </div>
       <table :class="styles.booksTable">
         <thead>
           <tr>
@@ -53,6 +93,9 @@ export default {
       books: [],
     };
   },
+  watch: {
+    $route: 'fetchData',
+  },
   methods: {
     formateDate(dateStr) {
       return dayjs(dateStr).format('HH:mm DD/MM/YYYY');
@@ -86,7 +129,6 @@ export default {
         url += `&title[regex]=${searchTerm}&title[options]=i`;
       }
       this.$router.push(url);
-      this.fetchData();
     },
   },
   created() {
