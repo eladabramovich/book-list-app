@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination a,
+.pagination a:hover,
+.pagination a:active,
+.pagination a:visited {
+  margin-right: 6px;
+  color: var(--text-color-links);
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.pagination a:last-of-type {
+  margin-right: 0;
+}

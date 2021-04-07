@@ -31,13 +31,18 @@
 .sortActions li a,
 .sortActions li a:hover,
 .sortActions li a:active,
-.sortActions li a:visited {
+.sortActions li a:visited,
+.editLinkCell a,
+.editLinkCell a:hover,
+.editLinkCell a:active,
+.editLinkCell a:visited {
   color: var(--text-color-links);
   text-decoration: underline;
 }
 
 .booksTable {
   width: 100%;
+  margin-bottom: 24px;
   border-collapse: collapse;
 }
 
@@ -62,7 +67,7 @@
 }
 
 .ctaBtnCont {
-  margin-top: 64px;
+  margin-top: 32px;
   text-align: center;
 }
 

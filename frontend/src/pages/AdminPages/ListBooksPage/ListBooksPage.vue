@@ -65,9 +65,14 @@
           </tr>
         </tbody>
       </table>
+      <Pagination
+        :current-page="currentPage"
+        :url="$route.fullPath"
+        :end-page="totalPages"
+      />
       <div :class="styles.ctaBtnCont">
-        <BaseLinkButton to="/manage/books/add" :class="styles.addBookBtn"
-          >Add New Book</BaseLinkButton
+        <BaseLinkButton to="/manage/books/add" :class="styles.addBookBtn">
+          Add New Book</BaseLinkButton
         >
       </div>
     </BaseContainer>
@@ -78,19 +83,25 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import SearchBar from '@/components/UI/SearchBar/SearchBar.vue';
+import Pagination from '@/components/UI/Pagination/Pagination.vue';
 import moduleStyles from './ListBooksPage.module.css';
 export default {
   components: {
     SearchBar,
+    Pagination,
   },
   computed: {
     styles() {
       return moduleStyles;
     },
+    currentPage() {
+      return parseInt(this.$route.query.page) || 1;
+    },
   },
   data() {
     return {
       books: [],
+      totalPages: 1,
     };
   },
   watch: {
@@ -119,6 +130,7 @@ export default {
       try {
         const { data } = await axios.get(url);
         this.books = data.data;
+        this.totalPages = data.pagination.pageCount;
       } catch (err) {
         console.error(err);
       }
