@@ -220,7 +220,7 @@ export default {
         if (!this.$v.password.required) {
           this.errors.password = 'This field is required';
         } else if (!this.$v.password.$minLength) {
-          this.errors.password = 'Please enter at least 2 characters';
+          this.errors.password = 'Password must be at least 6 characters';
         }
       } else if (this.$v.password.$invalid && !this.$v.password.$dirty) {
         this.errors.password = 'This field is required';

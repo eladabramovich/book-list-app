@@ -4,7 +4,7 @@
       type="text"
       id="search-term"
       :class="styles.searchInput"
-      placeholder="Enter a book name"
+      :placeholder="placeholderText"
       v-model="term"
     />
     <label for="search-term">Search Book Name</label>
@@ -19,6 +19,12 @@
 <script>
 import moduleStyles from './SearchBar.module.css';
 export default {
+  props: {
+    placeholderText: {
+      type: String,
+      default: 'Search...',
+    },
+  },
   computed: {
     styles() {
       return moduleStyles;

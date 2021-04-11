@@ -7,6 +7,8 @@ import BookDetails from '../pages/BookDetailsPage/BookDetailsPage.vue';
 import ListBooksPage from '../pages/AdminPages/ListBooksPage/ListBooksPage.vue';
 import AddBookPage from '../pages/AdminPages/AddBookPage/AddBookPage.vue';
 import EditBookPage from '../pages/AdminPages/EditBookPage/EditBookPage.vue';
+import ListUsersPage from '../pages/AdminPages/ListUsersPage/ListUsersPage.vue';
+import EditUserPage from '../pages/AdminPages/EditUserPage/EditUserPage.vue';
 
 Vue.use(VueRouter);
 
@@ -53,6 +55,24 @@ const routes = [
     path: '/manage/books/:id',
     name: 'editBook',
     component: EditBookPage,
+    meta: {
+      requiresAuth: true,
+      requiresAdminRole: true,
+    },
+  },
+  {
+    path: '/manage/users',
+    name: 'listUsers',
+    component: ListUsersPage,
+    meta: {
+      requiresAuth: true,
+      requiresAdminRole: true,
+    },
+  },
+  {
+    path: '/manage/users/:id',
+    name: 'editUser',
+    component: EditUserPage,
     meta: {
       requiresAuth: true,
       requiresAdminRole: true,

@@ -1,0 +1,105 @@
+.listUsersPage {
+  min-height: var(--content-min-height);
+  margin-bottom: 104px;
+  padding-top: 32px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.filterActions {
+  max-width: 47%;
+  margin: 0 auto 32px auto;
+}
+
+.sortActions {
+  width: 100%;
+  margin-left: 8px;
+  list-style-type: none;
+}
+
+.sortActions li {
+  display: inline-block;
+}
+
+.sortActions li:not(:last-of-type) {
+  margin-right: 48px;
+}
+
+.sortActions li a,
+.sortActions li a:hover,
+.sortActions li a:active,
+.sortActions li a:visited,
+.editLinkCell a,
+.editLinkCell a:hover,
+.editLinkCell a:active,
+.editLinkCell a:visited {
+  color: var(--text-color-links);
+  text-decoration: underline;
+}
+
+.usersTable {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+}
+
+.usersTable th,
+.usersTable td {
+  padding: 12px 0 12px 20px;
+  color: #111111;
+  text-align: left;
+}
+
+.usersTable th {
+  background-color: var(--primary-color);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.usersTable td {
+  padding-left: 8px;
+  font-size: 16px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .filterActions {
+    max-width: 56%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .filterActions {
+    max-width: 76%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .filterActions {
+    max-width: 100%;
+    margin-top: 16px;
+  }
+
+  .sortActions {
+    display: grid;
+    margin-left: 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    row-gap: 6px;
+    justify-items: center;
+  }
+
+  .sortActions li:not(:last-of-type) {
+    margin-right: 0;
+  }
+
+  .usersTable .userId,
+  .usersTable .createdAt,
+  .usersTable .updatedAt {
+    display: none;
+  }
+}
