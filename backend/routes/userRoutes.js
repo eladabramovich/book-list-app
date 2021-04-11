@@ -9,6 +9,7 @@ const {
   login,
   updateUser,
   deleteUser,
+  getUser,
   getAllUsers,
 } = require('../controllers/userController');
 
@@ -19,6 +20,7 @@ router
 router.route('/login').post(login);
 router
   .route('/:id')
+  .get(protect, isAdmin, getUser)
   .put(protect, isAdmin, updateUser)
   .delete(protect, isAdmin, deleteUser);
 
