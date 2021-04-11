@@ -58,8 +58,4 @@ reviewSchema.post('save', async function () {
   await this.constructor.getAverageScore(this.book);
 });
 
-reviewSchema.pre('remove', async function () {
-  await this.constructor.getAverageScore(this.book);
-});
-
 module.exports = mongoose.model('Review', reviewSchema);
