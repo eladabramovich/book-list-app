@@ -160,9 +160,21 @@ const deleteUser = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private/Admin
+
+const getAllUsers = asyncHandler(async (req, res) => {
+  res.advancedResults.data.forEach((item) => {
+    item.password = null;
+  });
+  return res.status(200).json(res.advancedResults);
+});
+
 module.exports = {
   registerUser,
   login,
   updateUser,
   deleteUser,
+  getAllUsers,
 };
