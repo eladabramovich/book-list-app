@@ -5,7 +5,9 @@
     </router-link>
     <ul :class="`${styles.navList} ${styles.alignCenter}`">
       <li :class="styles.navItem">
-        <router-link to="/browse">Browse Books</router-link>
+        <router-link to="/browse?limit=5&page=1&sort=title">
+          Browse Books
+        </router-link>
       </li>
     </ul>
     <ul :class="`${styles.navList} ${styles.alignRight}`">

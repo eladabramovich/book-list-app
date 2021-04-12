@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../pages/HomePage/HomePage.vue';
 import Auth from '../pages/AuthPage/AuthPage.vue';
 import Logout from '../pages/LogoutPage/LogoutPage.vue';
+import BrowseBooksPage from '../pages/BrowseBooksPage/BrowseBooksPage.vue';
 import BookDetails from '../pages/BookDetailsPage/BookDetailsPage.vue';
 import ListBooksPage from '../pages/AdminPages/ListBooksPage/ListBooksPage.vue';
 import AddBookPage from '../pages/AdminPages/AddBookPage/AddBookPage.vue';
@@ -27,6 +28,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout,
+  },
+  {
+    path: '/browse',
+    name: 'browseBooks',
+    component: BrowseBooksPage,
   },
   {
     path: '/book/:id',

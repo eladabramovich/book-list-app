@@ -4,7 +4,7 @@
       <router-link :class="styles.link" to="/">
         <span @click="closeDrawer">Home</span>
       </router-link>
-      <router-link :class="styles.link" to="/browse">
+      <router-link :class="styles.link" to="/browse?limit=5&page=1&sort=title">
         <span @click="closeDrawer">Browse Books</span>
       </router-link>
       <router-link :class="styles.link" to="/manage/books" v-if="isUserAdmin">

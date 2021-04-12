@@ -24,3 +24,9 @@
 .searchInput::placeholder {
   color: var(--text-color-primary);
 }
+
+@media screen and (max-width: 767px) {
+  .searchBar {
+    margin-bottom: 24px;
+  }
+}

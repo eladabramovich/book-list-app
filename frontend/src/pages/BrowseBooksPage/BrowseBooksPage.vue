@@ -1,9 +1,9 @@
 <template>
-  <main :class="`${styles.listBooksPage} page`">
+  <main :class="`${styles.browseBooksPage} page`">
     <BaseContainer>
-      <h1 :class="styles.title">List All Books</h1>
+      <h1 :class="styles.pageHeading">Browse Books</h1>
       <div :class="styles.filterActions">
-        <SearchBar @search="searchBook" placeholder-text="Enter a book name" />
+        <SearchBar @search="searchBook" />
         <ul :class="styles.sortActions">
           <li>
             <router-link
@@ -27,66 +27,45 @@
             <router-link
               :to="{
                 path: $route.path,
-                query: { limit: 5, page: 1, sort: 'createdAt' },
+                query: { limit: 5, page: 1, sort: '-averageScore' },
               }"
-              >Create Date DESC</router-link
+              >Highest Score</router-link
             >
           </li>
           <li>
             <router-link
               :to="{
                 path: $route.path,
-                query: { limit: 5, page: 1, sort: '-createdAt' },
+                query: { limit: 5, page: 1, sort: 'averageScore' },
               }"
-              >Create Date ASC</router-link
+              >Lowest Score</router-link
             >
           </li>
         </ul>
       </div>
-      <table :class="styles.booksTable">
-        <thead>
-          <tr>
-            <th :class="styles.bookTitle">Title</th>
-            <th :class="styles.bookId">ID</th>
-            <th :class="styles.createdAt">Created At</th>
-            <th :class="styles.updatedAt">Updated At</th>
-            <th :class="styles.editLinkCell"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="book in books" :key="book._id" :class="styles.row">
-            <td :class="styles.bookTitle">{{ book.title }}</td>
-            <td :class="styles.bookId">{{ book._id }}</td>
-            <td :class="styles.createdAt">{{ formateDate(book.createdAt) }}</td>
-            <td :class="styles.updatedAt">{{ formateDate(book.updatedAt) }}</td>
-            <td :class="styles.editLinkCell">
-              <router-link :to="`/manage/books/${book._id}`">Edit</router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <AppSpinner v-if="loading" />
+      <ServerErrorMessage v-else-if="error">
+        {{ error }}
+      </ServerErrorMessage>
+      <BooksList :books="books" v-else />
       <Pagination
         :current-page="currentPage"
         :url="$route.fullPath"
         :end-page="totalPages"
       />
-      <div :class="styles.ctaBtnCont">
-        <BaseLinkButton to="/manage/books/add" :class="styles.addBookBtn">
-          Add New Book</BaseLinkButton
-        >
-      </div>
     </BaseContainer>
   </main>
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import FetchBooksList from '@/mixins/FetchBooksList';
+import BooksList from '@/components/Books/BooksList/BooksList.vue';
 import SearchBar from '@/components/UI/SearchBar/SearchBar.vue';
 import Pagination from '@/components/UI/Pagination/Pagination.vue';
-import moduleStyles from './ListBooksPage.module.css';
+import moduleStyles from './BrowseBooksPage.module.css';
 export default {
   components: {
+    BooksList,
     SearchBar,
     Pagination,
   },
@@ -110,12 +89,10 @@ export default {
       const data = await this.fetchData();
       this.books = data.books;
       this.totalPages = data.totalPages;
+      window.scrollTo(0, 0);
     },
   },
   methods: {
-    formateDate(dateStr) {
-      return dayjs(dateStr).format('HH:mm DD/MM/YYYY');
-    },
     searchBook(searchTerm) {
       let url = `${this.$route.path}?limit=5&page=1`;
       if (searchTerm !== '') {
