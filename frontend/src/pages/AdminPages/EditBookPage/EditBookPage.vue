@@ -173,6 +173,9 @@ export default {
     OutlineLinkButton,
     DangerButton,
   },
+  metaInfo: {
+    title: 'Edit Book',
+  },
   data() {
     return {
       loading: false,

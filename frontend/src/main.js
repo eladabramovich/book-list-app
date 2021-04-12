@@ -3,6 +3,7 @@ import router from './router';
 import store from './store';
 import App from './App.vue';
 import Vuelidate from 'vuelidate';
+import VueMeta from 'vue-meta';
 
 import BaseContainer from './components/Base/BaseContainer/BaseContainer.vue';
 import BaseButton from './components/Base/BaseButton/BaseButton.vue';
@@ -19,6 +20,7 @@ Vue.component('AppSpinner', AppSpinner);
 Vue.component('ServerErrorMessage', ServerErrorMessage);
 
 Vue.use(Vuelidate);
+Vue.use(VueMeta);
 
 new Vue({
   router,

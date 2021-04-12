@@ -85,6 +85,9 @@ export default {
     SearchBar,
     Pagination,
   },
+  metaInfo: {
+    title: 'Manage Users',
+  },
   computed: {
     styles() {
       return moduleStyles;

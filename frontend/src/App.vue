@@ -21,6 +21,10 @@ export default {
     AppFooter,
     AppDrawer,
   },
+  metaInfo: {
+    title: 'My Books List',
+    titleTemplate: '%s | My Books List',
+  },
   computed: {
     isDrawerOpen() {
       return this.$store.getters.isAppDrawerOpen;

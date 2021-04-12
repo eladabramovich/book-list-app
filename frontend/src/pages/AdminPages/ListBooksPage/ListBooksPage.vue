@@ -91,6 +91,9 @@ export default {
     Pagination,
   },
   mixins: [FetchBooksList],
+  metaInfo: {
+    title: 'Manage Books',
+  },
   computed: {
     styles() {
       return moduleStyles;

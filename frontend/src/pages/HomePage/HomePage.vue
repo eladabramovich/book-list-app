@@ -29,6 +29,9 @@ export default {
   components: {
     BooksList,
   },
+  metaInfo: {
+    title: 'Home',
+  },
   computed: {
     styles() {
       return homeStyles;

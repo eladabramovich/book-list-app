@@ -165,6 +165,9 @@ export default {
   components: {
     OutlineLinkButton,
   },
+  metaInfo: {
+    title: 'New Book',
+  },
   data() {
     return {
       loading: false,

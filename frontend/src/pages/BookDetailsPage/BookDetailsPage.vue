@@ -38,6 +38,9 @@ export default {
   components: {
     Reviews,
   },
+  metaInfo: {
+    titleTemplate: null,
+  },
   computed: {
     styles() {
       return moduleStyles;

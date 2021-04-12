@@ -70,6 +70,9 @@ export default {
     Pagination,
   },
   mixins: [FetchBooksList],
+  metaInfo: {
+    title: 'Browse',
+  },
   computed: {
     styles() {
       return moduleStyles;

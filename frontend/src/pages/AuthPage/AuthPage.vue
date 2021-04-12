@@ -86,6 +86,11 @@ import {
 } from 'vuelidate/lib/validators';
 import moduleStyles from './AuthPage.module.css';
 export default {
+  metaInfo() {
+    return {
+      title: this.authActionText,
+    };
+  },
   data() {
     return {
       loading: false,

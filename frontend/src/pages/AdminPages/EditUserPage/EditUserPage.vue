@@ -95,6 +95,9 @@ export default {
     OutlineLinkButton,
     DangerButton,
   },
+  metaInfo: {
+    title: 'Edit User',
+  },
   data() {
     return {
       loading: false,
