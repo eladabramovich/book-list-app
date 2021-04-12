@@ -92,7 +92,6 @@ export default {
       const data = await this.fetchData();
       this.books = data.books;
       this.totalPages = data.totalPages;
-      window.scrollTo(0, 0);
     },
   },
   methods: {

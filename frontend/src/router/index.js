@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../pages/HomePage/HomePage.vue';
+import About from '../pages/AboutPage/AboutPage.vue';
 import Auth from '../pages/AuthPage/AuthPage.vue';
 import Logout from '../pages/LogoutPage/LogoutPage.vue';
 import BrowseBooksPage from '../pages/BrowseBooksPage/BrowseBooksPage.vue';
@@ -18,6 +19,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About,
   },
   {
     path: '/register',
@@ -111,6 +117,10 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.afterEach(() => {
+  window.scrollTo(0, 0);
 });
 
 router.beforeEach((to, from, next) => {
