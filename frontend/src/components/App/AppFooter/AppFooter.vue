@@ -8,7 +8,7 @@
         <router-link to="/browse">Browse Books</router-link>
       </li>
       <li>
-        <router-link to="/About">About</router-link>
+        <router-link to="/about">About</router-link>
       </li>
     </ul>
     <p>&copy; {{ year }} My Books List</p>

@@ -1,0 +1,51 @@
+.aboutPage {
+  margin-bottom: 104px;
+  padding-top: 24px;
+}
+
+.pageHeading,
+.title {
+  color: var(--text-color-primary);
+}
+
+.pageHeading {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.info {
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.contactInfo {
+  line-height: 1.3;
+}
+
+.contactInfo a,
+.contactInfo a:hover,
+.contactInfo a:active,
+.contactInfo a:visited {
+  color: var(--text-color-links);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+  .title,
+  .info {
+    text-align: center;
+  }
+
+  .info {
+    margin-bottom: 24px;
+  }
+
+  .contactInfo {
+    overflow-wrap: break-word;
+  }
+}
