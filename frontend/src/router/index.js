@@ -1,16 +1,32 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../pages/HomePage/HomePage.vue';
-import About from '../pages/AboutPage/AboutPage.vue';
 import Auth from '../pages/AuthPage/AuthPage.vue';
 import Logout from '../pages/LogoutPage/LogoutPage.vue';
 import BrowseBooksPage from '../pages/BrowseBooksPage/BrowseBooksPage.vue';
 import BookDetails from '../pages/BookDetailsPage/BookDetailsPage.vue';
-import ListBooksPage from '../pages/AdminPages/ListBooksPage/ListBooksPage.vue';
-import AddBookPage from '../pages/AdminPages/AddBookPage/AddBookPage.vue';
-import EditBookPage from '../pages/AdminPages/EditBookPage/EditBookPage.vue';
-import ListUsersPage from '../pages/AdminPages/ListUsersPage/ListUsersPage.vue';
-import EditUserPage from '../pages/AdminPages/EditUserPage/EditUserPage.vue';
+
+const About = () => import('../pages/AboutPage/AboutPage.vue');
+const ListBooksPage = () =>
+  import(
+    /* webpackChunkName: "admin-books" */ '../pages/AdminPages/ListBooksPage/ListBooksPage.vue'
+  );
+const AddBookPage = () =>
+  import(
+    /* webpackChunkName: "admin-books" */ '../pages/AdminPages/AddBookPage/AddBookPage.vue'
+  );
+const EditBookPage = () =>
+  import(
+    /* webpackChunkName: "admin-books" */ '../pages/AdminPages/EditBookPage/EditBookPage.vue'
+  );
+const ListUsersPage = () =>
+  import(
+    /* webpackChunkName: "admin-users" */ '../pages/AdminPages/ListUsersPage/ListUsersPage.vue'
+  );
+const EditUserPage = () =>
+  import(
+    /* webpackChunkName: "admin-users" */ '../pages/AdminPages/EditUserPage/EditUserPage.vue'
+  );
 
 Vue.use(VueRouter);
 
