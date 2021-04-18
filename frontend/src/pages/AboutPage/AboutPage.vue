@@ -13,7 +13,7 @@
         Contact information:
         <br />
         <a
-          href="https://www.linkedin.com/in/elad-abramovich-791814162"
+          href="https://www.linkedin.com/in/elad-abramovich/"
           target="_blank"
           title="linkedin profile"
         >
