@@ -1,5 +1,3 @@
-Live code demo:  [here](https://books-app.abramovich-elad.com)
-
 To get started clone or download the code
 and open the terminal in the root folder.
 
